@@ -1,44 +1,39 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
+const { createClient } = require('@supabase/supabase-js');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static('public')); // jos haluat palvella staattiset tiedostot
+app.use(express.static('public')); // palvelee index.html ja kuvat
 
-// SQLite tietokanta
-const db = new sqlite3.Database('./db.sqlite', (err) => {
-    if (err) console.error(err.message);
-    else console.log('Connected to SQLite database.');
+// Supabase client
+const supabaseUrl = 'https://cpdqmrebwbtcczhclelx.supabase.co'; // projektisi URL
+const supabaseKey = process.env.SUPABASE_KEY;                     // lisää Vercel env:iin
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+app.get('/kommentit', async (req, res) => {
+  const { data, error } = await supabase
+    .from('kommentit')
+    .select('*')
+    .order('aika', { ascending: false });
+
+  if (error) return res.status(500).json({ error: error.message });
+  res.json(data);
 });
 
-// Luo taulu, jos ei ole
-db.run(`CREATE TABLE IF NOT EXISTS kommentit (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    teksti TEXT NOT NULL,
-    aika DATETIME DEFAULT CURRENT_TIMESTAMP
-)`);
+app.post('/kommentit', async (req, res) => {
+  const { teksti } = req.body;
+  if (!teksti) return res.status(400).json({ error: 'Teksti puuttuu' });
 
-// Hae kommentit
-app.get('/kommentit', (req, res) => {
-    db.all('SELECT * FROM kommentit ORDER BY aika DESC', [], (err, rows) => {
-        if (err) res.status(500).send(err.message);
-        else res.json(rows);
-    });
+  const { data, error } = await supabase
+    .from('kommentit')
+    .insert([{ teksti }])
+    .select();
+
+  if (error) return res.status(500).json({ error: error.message });
+  res.json(data[0]);
 });
-
-// Lisää kommentti
-app.post('/kommentit', (req, res) => {
-    const { teksti } = req.body;
-    if (!teksti) return res.status(400).send('Kommentti puuttuu');
-    db.run('INSERT INTO kommentit (teksti) VALUES (?)', [teksti], function(err) {
-        if (err) res.status(500).send(err.message);
-        else res.json({ id: this.lastID });
-    });
-});
-
-app.listen(port, () => console.log(`Server running on port ${port}`));
