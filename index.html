@@ -21,39 +21,43 @@
         <input type="text" id="kommenttiInput" placeholder="Kommenttisi.." required>
         <button type="submit">Lähetä kommentti</button>
     </form>
-    
-    <h3>Kommentit</h3>
-    <ul id="Kommenttilista">
-    
-    </ul>
+
+    <ul id="Kommenttilista"></ul>
     
     <script>
-        const form = document.getElementById('Kommentit');
-        const kentta = document.getElementById('kommenttiInput');
-        const lista = document.getElementById('Kommenttilista');
+    const form = document.getElementById('Kommentit');
+    const kentta = document.getElementById('kommenttiInput');
+    const lista = document.getElementById('Kommenttilista');
 
-        const tallennetutKommentit = JSON.parse(localStorage.getItem('kommentit')) || [];
-        tallennetutKommentit.forEach(k => {
-            const li = document.createElement('li');
-            li.textContent = k;
-            lista.appendChild(li);
-        });
+    function haeKommentit() {
+        fetch('kommentit.php')
+            .then(res => res.json())
+            .then(data => {
+                lista.innerHTML = '';
+                data.forEach(k => {
+                    const li = document.createElement('li');
+                    li.textContent = k.teksti;
+                    lista.appendChild(li);
+                });
+            });
+    }
 
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const teksti = kentta.value;
+        if(teksti.trim() !== '') {
+            fetch('kommentit.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ teksti })
+            }).then(() => {
+                kentta.value = '';
+                haeKommentit();
+            });
+        }
+    });
 
-            const kommentti = kentta.value;
-            if (kommentti.trim() !== '') {
-                const li = document.createElement('li');
-                li.textContent = kommentti;
-                lista.appendChild(li);
-
-                tallennetutKommentit.push(kommentti);
-                localStorage.setItem('kommentit', JSON.stringify(tallennetutKommentit));
-
-                kentta.value = ''; 
-            }
-        });
+    haeKommentit();
     </script>    
 </body>
 </html>
