@@ -30,7 +30,7 @@
     const lista = document.getElementById('Kommenttilista');
 
     function haeKommentit() {
-        fetch('/kommentit')
+        fetch('/api/kommentit')
             .then(res => res.json())
             .then(data => {
                 lista.innerHTML = '';
@@ -46,7 +46,7 @@
         e.preventDefault();
         const teksti = kentta.value;
         if(teksti.trim() !== '') {
-            fetch('/kommentit', {
+            fetch('/api/kommentit', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ teksti })
