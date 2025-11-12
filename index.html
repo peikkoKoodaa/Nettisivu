@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testi</title>
+</head>
+<body>
+    <h1>Tässä on tietoa pythonilla tekemästäni tasohyppelypelistä!</h1>
+    <p>Tässä on pelaajan ja vihollisen kuvat</p>
+    <img src="pelaaja.png" alt="Kuvaa ei voitu ladata" style="width: 100px; height: auto;">
+    <img src="vihollinen.png" alt="Kuvaa ei voitu ladata" style="width: 100px; height: auto;">
+    <p>Tässä on pelin taustamusiikki</p>
+    <audio src="musiikki.mp3" controls></audio>
+    <p>Ja tässä on pelin taustakuva</p>
+    <img src="tausta.png" alt="Kuvaa ei voitu ladata" style="width: 200px; height: auto;">
+    <p>Lisää tulossa..</p>
+
+    <h2>Jätä kommentti!</h2>
+    <form id="Kommentit">
+        <input type="text" id="kommenttiInput" placeholder="Kommenttisi.." required>
+        <button type="submit">Lähetä kommentti</button>
+    </form>
+    
+    <h3>Kommentit</h3>
+    <ul id="Kommenttilista">
+    
+    </ul>
+    
+    <script>
+        const form = document.getElementById('Kommentit');
+        const kentta = document.getElementById('kommenttiInput');
+        const lista = document.getElementById('Kommenttilista');
+
+        const tallennetutKommentit = JSON.parse(localStorage.getItem('kommentit')) || [];
+        tallennetutKommentit.forEach(k => {
+            const li = document.createElement('li');
+            li.textContent = k;
+            lista.appendChild(li);
+        });
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const kommentti = kentta.value;
+            if (kommentti.trim() !== '') {
+                const li = document.createElement('li');
+                li.textContent = kommentti;
+                lista.appendChild(li);
+
+                tallennetutKommentit.push(kommentti);
+                localStorage.setItem('kommentit', JSON.stringify(tallennetutKommentit));
+
+                kentta.value = ''; 
+            }
+        });
+    </script>    
+</body>
+</html>
