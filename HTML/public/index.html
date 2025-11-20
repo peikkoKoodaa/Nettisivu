@@ -3,17 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peli.fi</title>
-    <style>
-        canvas {
-            border: 1px solid black;
-        }
-    </style>    
+    <title>Testi</title>
 </head>
 <body>
-    <h1>PeliTesti</h1>
-    <canvas id="piirto" width="800" height="700"></canvas>
+    <h1>Tässä on tietoa pythonilla tekemästäni tasohyppelypelistä!</h1>
+    <p>Tässä on pelaajan ja vihollisen kuvat</p>
+    <img src="pelaaja.png" alt="Kuvaa ei voitu ladata" style="width: 100px; height: auto;">
+    <img src="vihollinen.png" alt="Kuvaa ei voitu ladata" style="width: 100px; height: auto;">
+    <p>Tässä on pelin taustamusiikki</p>
+    <audio src="musiikki.mp3" controls></audio>
+    <p>Ja tässä on pelin taustakuva</p>
+    <img src="tausta.png" alt="Kuvaa ei voitu ladata" style="width: 200px; height: auto;">
+    <p>Lisää tulossa..</p>
 
-    <script src="homma.js"></script>
+    <h2>Jätä kommentti!</h2>
+    <form id="Kommentit">
+        <input type="text" id="kommenttiInput" placeholder="Kommenttisi.." required>
+        <button type="submit">Lähetä kommentti</button>
+    </form>
+
+    <ul id="Kommenttilista"></ul>
+    
+    <script>
+    const form = document.getElementById('Kommentit');
+    const kentta = document.getElementById('kommenttiInput');
+    const lista = document.getElementById('Kommenttilista');
+
+    function haeKommentit() {
+        fetch('/api/kommentit')
+            .then(res => res.json())
+            .then(data => {
+                lista.innerHTML = '';
+                data.forEach(k => {
+                    const li = document.createElement('li');
+                    li.textContent = k.teksti;
+                    lista.appendChild(li);
+                });
+            });
+    }
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const teksti = kentta.value;
+        if(teksti.trim() !== '') {
+            fetch('/api/kommentit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ teksti })
+            }).then(() => {
+                kentta.value = '';
+                haeKommentit();
+            });
+        }
+    });
+
+    haeKommentit();
+    </script>    
 </body>
 </html>
