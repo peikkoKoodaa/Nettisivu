@@ -107,8 +107,8 @@ function update() {
     if (x < 0) {
         x = 0;
     }
-    if (x > alusta.width) {
-        x = alusta.width;
+    if (x > alusta.width - 50) {
+        x = alusta.width - 50;
     }    
 
     draw();
