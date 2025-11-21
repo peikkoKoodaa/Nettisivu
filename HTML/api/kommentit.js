@@ -10,7 +10,7 @@ export default async function handler(req, res) {
   console.log('Request method:', req.method);
   try {
     if (req.method === 'GET') {
-      const { data, error } = await supabase.from('kommentit').select('*').order('aika', { ascending: false });
+      const { data, error } = await supabase.from('kommentit').select('*').order('id', { ascending: false });
       if (error) {
         console.error('GET error:', error);
         return res.status(500).json({ error: error.message });
