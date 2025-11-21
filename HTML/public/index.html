@@ -46,18 +46,22 @@
             });
     }
 
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', async function(e) {
         e.preventDefault();
         const teksti = kentta.value;
-        if(teksti.trim() !== '') {
-            fetch('/api/kommentit', {
+    
+        if (teksti.trim() !== '') {
+            const res = await fetch('/api/kommentit', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ teksti })
-            }).then(() => {
-                kentta.value = '';
-                haeKommentit();
             });
+    
+            const data = await res.json();
+            console.log("Vastaus serveriltä:", data);
+    
+            kentta.value = '';
+            haeKommentit();
         }
     });
 
