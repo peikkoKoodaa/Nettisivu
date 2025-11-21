@@ -19,6 +19,7 @@ export default async function handler(req, res) {
     }
 
     if (req.method === 'POST') {
+      console.log("req body:", req.body);
       const { teksti } = req.body;
       console.log('Teksti:', teksti);
       const { error } = await supabase.from('kommentit').insert([{ teksti }]);
