@@ -104,6 +104,13 @@ function update() {
         Vmaassa = true;
     }
 
+    if (x < 0) {
+        x = 0
+    }
+    if (x > 800) {
+        x = 800
+    }    
+
     draw();
     d.fillStyle = 'black';
     d.font = '20px Arial';
