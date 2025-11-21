@@ -4,6 +4,8 @@ const supabaseUrl = 'https://cpdqmrebwbtcczhclelx.supabase.co';
 const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
+console.log("Salasana:", supabaseKey);
+
 export default async function handler(req, res) {
   console.log('Request method:', req.method);
   try {
