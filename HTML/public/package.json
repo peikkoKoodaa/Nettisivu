@@ -1,0 +1,14 @@
+{
+  "name": "selainpeli",
+  "version": "1.0.0",
+  "description": "Three.js selainpeli testiprojekti",
+  "main": "main.js",
+  "scripts": {
+    "start": "serve ."
+  },
+  "dependencies": {
+    "three": "^0.157.0"
+  },
+  "author": "Toivo",
+  "license": "MIT"
+}

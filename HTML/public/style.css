@@ -1,0 +1,27 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(120deg, #1e1e2f, #2a2a40);
+    font-family: Helvetica;
+}
+
+canvas {
+    display: block;
+}
+
+#crosshair {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 50px;
+    font-family: monospace;
+    pointer-events: none;
+    user-select: none;
+    text-shadow: 0 0 4px black;
+}
