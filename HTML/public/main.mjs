@@ -17,7 +17,7 @@ document.body.appendChild(renderer.domElement);
 const loader  = new THREE.TextureLoader();
 
 const grassTexture = loader.load('ruoho.png');
-const playerTexture = loader.load('pelaaja.png');
+const playerTexture = loader.load('3Dpelaaja.png');
 const dirtTexture = loader.load('multa.png');
 const stoneTexture = loader.load('kivi.png');
 const woodTexture = loader.load('puu.png');
@@ -165,7 +165,7 @@ window.addEventListener('mousemove', (event) => {
 });
 
 window.addEventListener('keydown', (e) => {
-    if (e.key.toLowerCase() === 'q') window.location.href = "https://www.esimerkki.com";
+    if (e.key.toLowerCase() === 'q') window.location.href = "index.html";
 });
 
 function checkGround() {
