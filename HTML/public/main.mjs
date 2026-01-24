@@ -164,6 +164,10 @@ window.addEventListener('mousemove', (event) => {
     }
 });
 
+window.addEventListener('keydown', (e) => {
+    if (e.key.toLowerCase() === 'q') window.location.href = "https://www.esimerkki.com";
+});
+
 function checkGround() {
     const offsets = [
         [-0.4, -0.4],
