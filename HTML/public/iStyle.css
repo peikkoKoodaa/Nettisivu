@@ -8,6 +8,7 @@ body {
     background: linear-gradient(120deg, #1e1e2f, #2a2a40);
     font-family: Helvetica;
     gap: 32px;
+    color: #ffffff;
 }
 
 .div {
@@ -30,14 +31,19 @@ button {
     padding: 10px 20px;
     border-radius: 30px;
     box-shadow: 0 0 60px rgba(0,0,0,0.5);
+    color: #ffffff;
 }
 
 input {
     background-color:#1e1e2f;
-    color:#000000;
+    color: #ffffff;
     font-size:large;
     font-weight:600;
     padding:10px 10px;
     border-radius: 30px;
     box-shadow: 0 0 60px rgba(0,0,0,0.5);
+}
+
+input::placeholder {
+    color: #ffffff;
 }
