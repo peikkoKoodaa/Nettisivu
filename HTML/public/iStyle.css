@@ -13,6 +13,7 @@ body {
     border-radius: 12px;
     width: 300px;
     box-shadow: 0 0 60px rgba(0,0,0,0.5);
+    margin-bottom: 16px;
 }
 
 button {
