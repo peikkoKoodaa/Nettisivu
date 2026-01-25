@@ -1,1 +1,16 @@
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(120deg, #1e1e2f, #2a2a40);
+    font-family: Helvetica;
+}
 
+.div {
+    background: #121929;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 300px;
+    box-shadow: 0 0 60px rgba(0,0,0,0.5);
+}
