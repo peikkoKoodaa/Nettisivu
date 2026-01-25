@@ -4,53 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Testi</title>
+    <link rel="stylesheet" href="iStyle.css">
 </head>
 <body>
     <h1>Tässä on tietoa pythonilla tekemästäni tasohyppelypelistä! (Ja muita koodaamiani juttuja.)</h1>
-    <p>Tässä on pelaajan ja vihollisen kuvat</p>
-    <img src="pelaaja.png" alt="Kuvaa ei voitu ladata" style="width: 100px; height: auto;">
-    <img src="vihollinen.png" alt="Kuvaa ei voitu ladata" style="width: 100px; height: auto;">
-    <p>Tässä on pelin taustamusiikki</p>
-    <audio src="musiikki.mp3" controls></audio>
-    <p>Ja tässä on pelin taustakuva</p>
-    <img src="tausta.png" alt="Kuvaa ei voitu ladata" style="width: 200px; height: auto;">
-    <br></br>
-    <a href="peli.html">
-        <button style="background-color: white; color: black; padding: 10px 20px; border-radius: 5px;">Mene pelaamaan!</button>
-    </a>
-    <br>
-    <a href="3DGame.html">
-        <button style="background-color: white; color: black; padding: 10px 20px; border-radius: 5px;">Mene pelaamaan uutta JavaScript-Minecraft DEMOani!</button>
-    </a>
-    <p>Kun haluat lopettaa pelaamisen jostain syystä niin paina Q (Siis JS-Minecraftissa)</p>
-    <br><br>
-    <h2>Lataukset</h2>
-    <p>Tästä voit ladata minun tekemäni Minecraftin!</p>
-    <ul>
-        <li><a href="/downloads/Minecraft.zip" download>Lataa peli (zip)</a></li>
-    </ul>
-    <p>Tästä voit ladata minun tekemäni kielimallin!</p>
-    <ul>
-        <li><a href="/downloads/SLM.zip" download>Lataa AI (zip)</a></li>
-    </ul>
-    <p>Tästä voit ladata myös uuden 2D pelini!</p>
-    <ul>
-        <li><a href="/downloads/PathFinder Maze 1.0.zip" download>Lataa Uusi 2D peli (zip)</a></li>
-    </ul>
-    <p>Tästä voit ladata myös uuden 3D pelini!</p>
-    <ul>
-        <li><a href="/downloads/3D Maze.zip" download>Lataa Uusi 3D peli (zip)</a></li>
-    </ul>
-    <br><br>
+    <div class="div">    
+        <p>Tässä on pelaajan ja vihollisen kuvat</p>
+        <img src="pelaaja.png" alt="Kuvaa ei voitu ladata" style="width: 100px; height: auto;">
+        <img src="vihollinen.png" alt="Kuvaa ei voitu ladata" style="width: 100px; height: auto;">
+        <p>Tässä on pelin taustamusiikki</p>
+        <audio src="musiikki.mp3" controls></audio>
+        <p>Ja tässä on pelin taustakuva</p>
+        <img src="tausta.png" alt="Kuvaa ei voitu ladata" style="width: 200px; height: auto;">
+    </div>
+    <div class="div">
+        <a href="peli.html">
+            <button>Mene pelaamaan!</button>
+        </a>
+        <br>
+        <a href="3DGame.html">
+            <button>Mene pelaamaan uutta JavaScript-Minecraft DEMOani!</button>
+        </a>
+        <p>Kun haluat lopettaa pelaamisen jostain syystä niin paina Q (Siis JS-Minecraftissa)</p>
+    </div>
+    <div class="div">
+        <h2>Lataukset</h2>
+        <p>Tästä voit ladata minun tekemäni Minecraftin!</p>
+        <ul>
+            <li><a href="/downloads/Minecraft.zip" download>Lataa peli (zip)</a></li>
+        </ul>
+        <p>Tästä voit ladata minun tekemäni kielimallin!</p>
+        <ul>
+            <li><a href="/downloads/SLM.zip" download>Lataa AI (zip)</a></li>
+        </ul>
+        <p>Tästä voit ladata myös uuden 2D pelini!</p>
+        <ul>
+            <li><a href="/downloads/PathFinder Maze 1.0.zip" download>Lataa Uusi 2D peli (zip)</a></li>
+        </ul>
+        <p>Tästä voit ladata myös uuden 3D pelini!</p>
+        <ul>
+            <li><a href="/downloads/3D Maze.zip" download>Lataa Uusi 3D peli (zip)</a></li>
+        </ul>
+    </div>  
     <p>Lisää tulossa..</p>
 
-    <h2>Jätä kommentti!</h2>
-    <form id="Kommentit">
-        <input type="text" id="kommenttiInput" placeholder="Kommenttisi.." required>
-        <button type="submit">Lähetä kommentti</button>
-    </form>
+    <div class="div">
+        <h2>Jätä kommentti!</h2>
+        <form id="Kommentit">
+            <input type="text" id="kommenttiInput" placeholder="Kommenttisi.." required>
+            <button type="submit">Lähetä kommentti</button>
+        </form>     
 
     <ul id="Kommenttilista"></ul>
+    </div>    
     
     <script>
     const form = document.getElementById('Kommentit');
