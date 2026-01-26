@@ -1,11 +1,19 @@
+html, body {
+    min-height: 100%;
+}
+
+html {
+    background: linear-gradient(120deg, #1e1e2f, #2a2a40);
+    background-attachment: fixed;
+}
+
 body {
-    height: 100vh;
+    background: transparent;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     padding-top: 40px;
-    background: linear-gradient(120deg, #1e1e2f, #2a2a40);
     font-family: Helvetica;
     gap: 32px;
     color: #ffffff;
