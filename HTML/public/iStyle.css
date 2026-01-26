@@ -5,9 +5,9 @@ html, body {
 html {
     background: linear-gradient(
         120deg,
-        #1e1e2f,
-        #2a2a40,
-        #1b233a
+        #141e30, 
+        #243b55, 
+        #1e1e2f
     );
     background-attachment: fixed;
     background-size: 400% 400%;
