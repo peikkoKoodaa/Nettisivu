@@ -41,9 +41,9 @@ body {
 .div {
     background: #121929;
     padding: 2rem;
-    border-radius: 12px;
+    border-radius: 20px;
     width: 100%;
-    max-width: 700px; /* säädä tätä */
+    max-width: 700px;
     box-shadow: 0 0 60px rgba(0,0,0,0.5);
     display: flex;
     flex-direction: column;
