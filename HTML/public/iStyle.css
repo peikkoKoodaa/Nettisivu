@@ -6,20 +6,46 @@ html, body {
 html {
     background: linear-gradient(
         120deg,
-        #141e30, 
-        #243b55, 
-        #1e1e2f
+        #0f172a,
+        #1e3a8a,
+        #243b55,
+        #020617
     );
-    background-size: 400% 400%;
+    background-size: 600% 600%;
     animation: gradientFlow 20s ease infinite;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(
+        circle at 30% 30%,
+        rgba(255,255,255,0.04),
+        transparent 60%
+    );
+    pointer-events: none;
+    animation: lightDrift 20s ease-in-out infinite;
+}
+
+@keyframes lightDrift {
+    0%   { transform: translate(0, 0); }
+    50%  { transform: translate(40px, 60px); }
+    100% { transform: translate(0, 0); }
 }
 
 @keyframes gradientFlow {
     0% {
         background-position: 0% 50%;
     }
+    25% {
+        background-position: 50% 0%;
+    }
     50% {
         background-position: 100% 50%;
+    }
+    75% {
+        background-position: 50% 100%;
     }
     100% {
         background-position: 0% 50%;
