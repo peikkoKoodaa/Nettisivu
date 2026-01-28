@@ -191,8 +191,48 @@ input {
     padding:10px 10px;
     border-radius: 30px;
     box-shadow: 0 0 60px rgba(0,0,0,0.5);
+    position: relative;
+    outline: none;
+    transition:
+        box-shadow 0.3s ease,
+        transform 0.25s ease,
+        background-color 0.3s ease;
+}
+
+input:focus {
+    background-color: #22305a;
+    box-shadow:
+        0 0 0 2px rgba(120,160,255,0.4),
+        0 0 25px rgba(120,160,255,0.6);
+    transform: scale(1.03);
+}
+
+input:focus::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 30px;
+    background: radial-gradient(
+        circle at center,
+        rgba(255,255,255,0.15),
+        transparent 70%
+    );
+    pointer-events: none;
+    animation: inputPulse 1.5s ease-out infinite;
+}
+
+@keyframes inputPulse {
+    0%   { opacity: 0; }
+    50%  { opacity: 0.4; }
+    100% { opacity: 0; }
 }
 
 input::placeholder {
     color: #ffffff;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+input:focus::placeholder {
+    opacity: 0;
+    transform: translateX(10px);
 }
