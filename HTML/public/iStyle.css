@@ -97,6 +97,26 @@ body {
     transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
+.audio-visual {
+    position: relative;
+}
+
+#audio {
+    width: 100%;
+}
+
+#viz {
+    width: 100%;
+    height: 60px;
+    margin-top: 10px;
+}
+
+@keyframes audioPulse {
+    0%   { box-shadow: 0 0 20px rgba(120,160,255,0.2); }
+    50%  { box-shadow: 0 0 60px rgba(120,160,255,0.6); }
+    100% { box-shadow: 0 0 20px rgba(120,160,255,0.2); }
+}
+
 .div:hover {
     transform: translateY(-6px);
     box-shadow: 0 0 90px rgba(80,120,255,0.35);
