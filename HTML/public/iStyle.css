@@ -133,7 +133,9 @@ body {
 }
 
 .div {
-    animation: floatIn 0.8s ease both;
+    animation: 
+        floatIn 0.8s ease both;
+        fadeInUp 0.8s ease forwards;
     background: rgba(18, 25, 41, 0.9);
     backdrop-filter: blur(5px);
     padding: 2rem;
@@ -146,7 +148,6 @@ body {
     gap: 16px;
     position: relative;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
-    animation: fadeInUp 0.8s ease forwards;
     opacity: 0;
 }
 
