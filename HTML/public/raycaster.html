@@ -17,5 +17,10 @@
 <body>
     <canvas id="game"></canvas>
     <script src="raycaster.mjs"></script>
+    <script>
+        window.addEventListener('keydown', (e) => {
+            if (e.key.toLowerCase() === 'q') window.location.href = "index.html";
+        });
+    </script>
 </body>
 </html>
