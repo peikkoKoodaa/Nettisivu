@@ -44,9 +44,15 @@ const gunImage = new Image();
 gunImage.src = "gun.png";
 const enemyImage = new Image();
 enemyImage.src = "enemy.png";
+const enemy2Image = new Image();
+enemy2Image.src = "enemy_2.png";
+const enemy3Image = new Image();
+enemy3Image.src = "enemy_3.png";
 
 let gunSprite = null;
 let enemySprite = null;
+let enemy2Sprite = null;
+let enemy3Sprite = null;
 
 let weaponBobTime = 0;
 let weaponBobAmount = 0;
@@ -69,6 +75,14 @@ gunImage.onload = () => {
 
 enemyImage.onload = () => {
     enemySprite = makeWhiteTransparent(enemyImage);
+};
+
+enemy2Image.onload = () => {
+    enemy2Sprite = makeWhiteTransparent(enemy2Image);
+};
+
+enemy3Image.onload = () => {
+    enemy3Sprite = makeWhiteTransparent(enemy3Image);
 };
 
 window.addEventListener("keydown", (e) => {
@@ -440,17 +454,43 @@ function renderEnemies() {
             if (column < 0 || column >= screenW) continue;
             if (dist >= zBuffer[column]) continue;
 
-            if (enemySprite) {
-                const srcX = Math.floor((x / size) * enemySprite.width);
-                ctx.drawImage(
-                    enemySprite,
-                    srcX, 0, 1, enemySprite.height,
-                    column, drawY, 1, size
-                );
-            } else {
-                ctx.fillStyle = "red";
-                ctx.fillRect(column, drawY, 1, size);
-            }
+            if (enemy.health === 3) {
+                if (enemySprite) {
+                    const srcX = Math.floor((x / size) * enemySprite.width);
+                    ctx.drawImage(
+                        enemySprite,
+                        srcX, 0, 1, enemySprite.height,
+                        column, drawY, 1, size
+                    );
+                } else {
+                    ctx.fillStyle = "red";
+                    ctx.fillRect(column, drawY, 1, size);
+                }
+            } else if (enemy.health === 2) {
+                if (enemy2Sprite) {
+                    const srcX = Math.floor((x / size) * enemy2Sprite.width);
+                    ctx.drawImage(
+                        enemy2Sprite,
+                        srcX, 0, 1, enemy2Sprite.height,
+                        column, drawY, 1, size
+                    );
+                } else {
+                    ctx.fillStyle = "red";
+                    ctx.fillRect(column, drawY, 1, size);
+                }
+            } else if (enemy.health === 1) {
+                if (enemy3Sprite) {
+                    const srcX = Math.floor((x / size) * enemy3Sprite.width);
+                    ctx.drawImage(
+                        enemy3Sprite,
+                        srcX, 0, 1, enemy3Sprite.height,
+                        column, drawY, 1, size
+                    );
+                } else {
+                    ctx.fillStyle = "red";
+                    ctx.fillRect(column, drawY, 1, size);
+                }
+            }   
         }
     }
 }
