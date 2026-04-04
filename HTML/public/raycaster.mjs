@@ -75,6 +75,7 @@ let zBuffer = [];
 let enemiesCount = 2;
 let wave = 0;
 let waveTextTimer = 0;
+let explosionTimer = 0;
 
 gunImage.onload = () => {
     gunSprite = makeWhiteTransparent(gunImage);
@@ -257,6 +258,7 @@ let spacePressedLastFrame = false;
 
 function shoot() {
     recoilKick = 150;
+    explosionTimer = 50;
 
     let bestEnemy = null;
     let bestDist = Infinity;
@@ -365,6 +367,10 @@ function update() {
     if (waveCooldown > 0) {
         waveCooldown--;
     }
+
+    if (explosionTimer > 0) {
+        explosionTimer--;
+    }    
 }
 
 function castRay(startX, startY, angle) {
@@ -723,6 +729,23 @@ function renderGameOver() {
     ctx.textAlign = "start";
 }
 
+function renderExplosion() {
+    if (explosionTimer <= 0) return;
+    if (!explosionSprite) return;
+
+    const screenW = canvas.width;
+    const screenH = canvas.height;
+
+    const scale = 15;
+    const w = gunImage.width * scale;
+    const h = gunImage.height * scale;
+    
+    const drawX = screenW / 2 - w / 2;
+    const drawY = screenH / 2;
+    
+    ctx.drawImage(explosionSprite, drawX, drawY, w, h);  
+}    
+
 function gameLoop() {
     update();
 
@@ -731,6 +754,7 @@ function gameLoop() {
     }
 
     render();
+    renderExplosion();
     renderWeapon();
     renderCrosshair();
     renderWaveText();
