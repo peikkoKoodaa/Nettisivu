@@ -44,6 +44,8 @@ const gunImage = new Image();
 gunImage.src = "testgun.png";
 const aimImage = new Image();
 aimImage.src = "aim.png";
+const explosionImage = new Image();
+explosionImage.src = "explosion.png";
 const enemyImage = new Image();
 enemyImage.src = "enemy.png";
 const enemy2Image = new Image();
@@ -53,6 +55,7 @@ enemy3Image.src = "enemy_3.png";
 
 let gunSprite = null;
 let aimSprite = null;
+let explosionSprite = null;
 let enemySprite = null;
 let enemy2Sprite = null;
 let enemy3Sprite = null;
@@ -79,6 +82,10 @@ gunImage.onload = () => {
 
 aimImage.onload = () => {
     aimSprite = makeWhiteTransparent(aimImage);
+};
+
+explosionImage.onload = () => {
+    explosionSprite = makeWhiteTransparent(explosionImage);
 };
 
 enemyImage.onload = () => {
