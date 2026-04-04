@@ -746,7 +746,7 @@ function renderExplosion() {
     if (aiming) {    
         ctx.drawImage(explosionSprite, drawX, drawY, w, h);  
     } else {
-        ctx.drawImage(explosionSprite, drawX-30, drawY+80, w, h);
+        ctx.drawImage(explosionSprite, drawX-70, drawY+90, w, h);
     }    
 }    
 
