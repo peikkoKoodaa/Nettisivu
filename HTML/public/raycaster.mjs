@@ -341,7 +341,7 @@ function update() {
         nextY += Math.sin(playerAngle + Math.PI / 2) * moveSpeed;
         isMoving = true;
     }
-    if (keys["r"] && reloadTimer <= 0 && bullets < 5) {
+    if (keys["r"] && reloadTimer <= 0) {
         reloadTimer = 150;
         bullets = 5;
     }    
