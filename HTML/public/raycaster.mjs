@@ -516,14 +516,17 @@ function renderWeapon() {
     const screenW = canvas.width;
     const screenH = canvas.height;
 
+    let w;
+    let h;
+    
     if (!aiming) {
         const scale = 15;
-        const w = gunImage.width * scale;
-        const h = gunImage.height * scale;
+        w = gunImage.width * scale;
+        h = gunImage.height * scale;
     } else {
         const scale = 30;
-        const w = aimImage.width * scale;
-        const h = aimImage.height * scale;
+        w = aimImage.width * scale;
+        h = aimImage.height * scale;
     }    
         
     const bobX = Math.sin(weaponBobTime) * 18 * weaponBobAmount;
