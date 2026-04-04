@@ -767,7 +767,9 @@ function gameLoop() {
     render();
     renderExplosion();
     renderWeapon();
-    renderCrosshair();
+    if (!aiming) {    
+        renderCrosshair();
+    }        
     renderWaveText();
     renderWavePopup();
     renderHealth();
