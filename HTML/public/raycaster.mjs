@@ -266,6 +266,8 @@ function shoot() {
     recoilKick = 150;
     explosionTimer = 25;
 
+    bullets--;
+    
     let bestEnemy = null;
     let bestDist = Infinity;
 
