@@ -566,8 +566,10 @@ function renderWeapon() {
     const recoilX = -recoil * 0.4;
     const recoilY = recoil;
 
+    const reloadY = Math.sin(reloadTimer) * 18 * 200;
+
     const drawX = screenW / 2 - w / 2 + bobX + idleSwayX + recoilX;
-    const drawY = screenH - h + bobY + idleSwayY + recoilY;
+    const drawY = screenH - h + bobY + idleSwayY + recoilY + reloadY;
 
     if (!aiming) {
         ctx.drawImage(gunSprite, drawX, drawY, w, h);
@@ -770,7 +772,7 @@ function renderExplosion() {
     }
 
     ctx.restore();
-}    
+}
 
 function gameLoop() {
     update();
