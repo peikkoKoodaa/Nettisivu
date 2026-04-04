@@ -733,6 +733,11 @@ function renderExplosion() {
     if (explosionTimer <= 0) return;
     if (!explosionSprite) return;
 
+    const alpha = Math.min(explosionTimer / 30, 1);
+
+    ctx.save();
+    ctx.globalAlpha = alpha;
+
     const screenW = canvas.width;
     const screenH = canvas.height;
 
@@ -746,8 +751,10 @@ function renderExplosion() {
     if (aiming) {    
         ctx.drawImage(explosionSprite, drawX, drawY, w, h);  
     } else {
-        ctx.drawImage(explosionSprite, drawX-100, drawY+130, w, h);
-    }    
+        ctx.drawImage(explosionSprite, drawX-100, drawY+140, w, h);
+    }
+
+    ctx.restore();
 }    
 
 function gameLoop() {
