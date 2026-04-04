@@ -63,6 +63,9 @@ let enemy3Sprite = null;
 let weaponBobTime = 0;
 let weaponBobAmount = 0;
 
+const maxBullets = 5;
+let bullets = maxBullets;
+
 let mouseDown = false;
 let shootPressedLastFrame = false;
 let aiming = false;
@@ -76,6 +79,7 @@ let enemiesCount = 2;
 let wave = 0;
 let waveTextTimer = 0;
 let explosionTimer = 0;
+let reloadTimer = 0;
 
 gunImage.onload = () => {
     gunSprite = makeWhiteTransparent(gunImage);
@@ -257,6 +261,8 @@ function openDoorInFront() {
 let spacePressedLastFrame = false;
 
 function shoot() {
+    if (reloadTimer > 0) return;
+    
     recoilKick = 150;
     explosionTimer = 25;
 
@@ -292,6 +298,11 @@ function shoot() {
             bestEnemy.alive = false;
         }
     }
+
+    if (bullets <= 0) {
+        reloadTimer = 250;
+        bullets = maxBullets;
+    }    
 }
 
 function update() {
@@ -370,6 +381,10 @@ function update() {
 
     if (explosionTimer > 0) {
         explosionTimer--;
+    }  
+
+    if (reloadTimer > 0) {
+        reloadTimer--;
     }    
 }
 
