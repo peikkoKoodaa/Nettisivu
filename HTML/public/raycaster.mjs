@@ -544,7 +544,7 @@ function renderWeapon() {
     if (!aiming) {
         ctx.drawImage(gunSprite, drawX, drawY, w, h);
     } else {
-        ctx.drawImage(aimSprite, drawX, drawY, w, h);
+        ctx.drawImage(aimSprite, drawX, drawY+20, w, h);
     }    
 }
 
