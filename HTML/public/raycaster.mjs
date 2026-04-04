@@ -258,7 +258,7 @@ let spacePressedLastFrame = false;
 
 function shoot() {
     recoilKick = 150;
-    explosionTimer = 50;
+    explosionTimer = 10;
 
     let bestEnemy = null;
     let bestDist = Infinity;
@@ -746,7 +746,7 @@ function renderExplosion() {
     if (aiming) {    
         ctx.drawImage(explosionSprite, drawX, drawY, w, h);  
     } else {
-        ctx.drawImage(explosionSprite, drawX-100, drawY+100, w, h);
+        ctx.drawImage(explosionSprite, drawX-100, drawY+130, w, h);
     }    
 }    
 
