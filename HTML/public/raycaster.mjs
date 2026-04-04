@@ -743,7 +743,11 @@ function renderExplosion() {
     const drawX = screenW / 2 - w / 2;
     const drawY = screenH / 2;
     
-    ctx.drawImage(explosionSprite, drawX, drawY, w, h);  
+    if (aiming) {    
+        ctx.drawImage(explosionSprite, drawX, drawY, w, h);  
+    } else {
+        ctx.drawImage(explosionSprite, drawX, drawY+70, w, h);
+    }    
 }    
 
 function gameLoop() {
