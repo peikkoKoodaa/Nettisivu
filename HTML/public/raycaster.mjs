@@ -41,7 +41,7 @@ const keys = {};
 const enemies = [];
 
 const gunImage = new Image();
-gunImage.src = "gun.png";
+gunImage.src = "testgun.png";
 const aimImage = new Image();
 aimImage.src = "aim.png";
 const enemyImage = new Image();
