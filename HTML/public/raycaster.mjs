@@ -302,7 +302,7 @@ function shoot() {
     }
 
     if (bullets <= 0) {
-        reloadTimer = 250;
+        reloadTimer = 150;
         bullets = maxBullets;
     }    
 }
@@ -568,7 +568,7 @@ function renderWeapon() {
     const recoilX = -recoil * 0.4;
     const recoilY = recoil;
 
-    const reloadY = Math.sin(reloadTimer) * 18 * 200;
+    const reloadY = Math.abs(reloadTimer) * 18 * 200;
 
     const drawX = screenW / 2 - w / 2 + bobX + idleSwayX + recoilX;
     const drawY = screenH - h + bobY + idleSwayY + recoilY + reloadY;
