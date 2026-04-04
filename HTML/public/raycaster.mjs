@@ -42,6 +42,8 @@ const enemies = [];
 
 const gunImage = new Image();
 gunImage.src = "gun.png";
+const aimImage = new Image();
+aimImage.src = "aim.png";
 const enemyImage = new Image();
 enemyImage.src = "enemy.png";
 const enemy2Image = new Image();
@@ -50,6 +52,7 @@ const enemy3Image = new Image();
 enemy3Image.src = "enemy_3.png";
 
 let gunSprite = null;
+let aimSprite = null;
 let enemySprite = null;
 let enemy2Sprite = null;
 let enemy3Sprite = null;
@@ -59,6 +62,7 @@ let weaponBobAmount = 0;
 
 let mouseDown = false;
 let shootPressedLastFrame = false;
+let aiming = false;
 
 let recoil = 0;
 let recoilKick = 0;
@@ -71,6 +75,10 @@ let waveTextTimer = 0;
 
 gunImage.onload = () => {
     gunSprite = makeWhiteTransparent(gunImage);
+};
+
+aimImage.onload = () => {
+    aimSprite = makeWhiteTransparent(aimImage);
 };
 
 enemyImage.onload = () => {
@@ -111,12 +119,18 @@ window.addEventListener("mousedown", (e) => {
     if (e.button === 0) {
         mouseDown = true;
     }
+    if (e.button === 2) {
+        aiming = true;
+    }    
 });
 
 window.addEventListener("mouseup", (e) => {
     if (e.button === 0) {
         mouseDown = false;
     }
+    if (e.button === 2) {
+        aiming = false;
+    }    
 });
 
 function getAliveEnemyCount() {
@@ -497,14 +511,21 @@ function renderEnemies() {
 
 function renderWeapon() {
     if (!gunSprite) return;
+    if (!aimSprite) return;
 
     const screenW = canvas.width;
     const screenH = canvas.height;
 
-    const scale = 15;
-    const w = gunImage.width * scale;
-    const h = gunImage.height * scale;
-
+    if (!aiming) {
+        const scale = 15;
+        const w = gunImage.width * scale;
+        const h = gunImage.height * scale;
+    } else {
+        const scale = 30;
+        const w = aimImage.width * scale;
+        const h = aimImage.height * scale;
+    }    
+        
     const bobX = Math.sin(weaponBobTime) * 18 * weaponBobAmount;
     const bobY = Math.abs(Math.cos(weaponBobTime)) * 16 * weaponBobAmount;
 
@@ -517,7 +538,11 @@ function renderWeapon() {
     const drawX = screenW / 2 - w / 2 + bobX + idleSwayX + recoilX;
     const drawY = screenH - h + bobY + idleSwayY + recoilY;
 
-    ctx.drawImage(gunSprite, drawX, drawY, w, h);
+    if (!aiming) {
+        ctx.drawImage(gunSprite, drawX, drawY, w, h);
+    } else {
+        ctx.drawImage(aimSprite, drawX, drawY, w, h);
+    }    
 }
 
 function renderCrosshair() {
