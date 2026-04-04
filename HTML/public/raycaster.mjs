@@ -258,7 +258,7 @@ let spacePressedLastFrame = false;
 
 function shoot() {
     recoilKick = 150;
-    explosionTimer = 10;
+    explosionTimer = 25;
 
     let bestEnemy = null;
     let bestDist = Infinity;
