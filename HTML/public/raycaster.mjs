@@ -341,6 +341,10 @@ function update() {
         nextY += Math.sin(playerAngle + Math.PI / 2) * moveSpeed;
         isMoving = true;
     }
+    if (keys["r"] && reloadTimer <= 0 && bullets < 5) {
+        reloadTimer = 150;
+        bullets = 5;
+    }    
 
     if (!isBlocked(Math.floor(nextX), Math.floor(playerY))) {
         playerX = nextX;
