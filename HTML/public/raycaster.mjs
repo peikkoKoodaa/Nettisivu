@@ -63,7 +63,7 @@ let enemy3Sprite = null;
 let weaponBobTime = 0;
 let weaponBobAmount = 0;
 
-const maxBullets = 10;
+const maxBullets = 15;
 let bullets = maxBullets;
 
 let mouseDown = false;
@@ -343,7 +343,7 @@ function update() {
     }
     if (keys["r"] && reloadTimer <= 0) {
         reloadTimer = 150;
-        bullets = 5;
+        bullets = maxBullets;
     }    
 
     if (!isBlocked(Math.floor(nextX), Math.floor(playerY))) {
@@ -572,8 +572,11 @@ function renderWeapon() {
     const recoilX = -recoil * 0.4;
     const recoilY = recoil;
 
-    const reloadY = (reloadTimer / 10) * 18 * 200;
+    const reloadY;
 
+    if (reloadTimer > 150 / 2) reloadY = (150 / 2) - (reloadTimer - 150 / 2);
+    if (reloadTimer < 150 / 2) reloadY = (150 / 2) - (reloadTimer - 150 / 2);
+    
     const drawX = screenW / 2 - w / 2 + bobX + idleSwayX + recoilX;
     const drawY = screenH - h + bobY + idleSwayY + recoilY + reloadY;
 
