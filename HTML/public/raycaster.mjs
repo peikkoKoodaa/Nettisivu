@@ -584,7 +584,7 @@ function renderWeapon() {
 
     if (!aiming) {
         ctx.drawImage(gunSprite, drawX, drawY, w, h);
-    } else {
+    } else if (aiming && reloadTimer <= 0) {
         ctx.drawImage(aimSprite, drawX, drawY-70, w, h);
     }    
 }
