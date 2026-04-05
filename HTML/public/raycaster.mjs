@@ -583,9 +583,9 @@ function renderWeapon() {
     const drawY = screenH - h + bobY + idleSwayY + recoilY + reloadY;
 
     if (aiming && reloadTimer <= 0) {
-        ctx.drawImage(gunSprite, drawX, drawY-70, w, h);
+        ctx.drawImage(aimSprite, drawX, drawY-70, w, h);
     } else {
-        ctx.drawImage(aimSprite, drawX, drawY, w, h);
+        ctx.drawImage(gunSprite, drawX, drawY, w, h);
     }    
 }
 
