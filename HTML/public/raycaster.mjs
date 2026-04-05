@@ -572,7 +572,7 @@ function renderWeapon() {
     const recoilX = -recoil * 0.4;
     const recoilY = recoil;
 
-    const reloadY;
+    let reloadY;
 
     if (reloadTimer > 150 / 2) reloadY = (150 / 2) - (reloadTimer - 150 / 2);
     if (reloadTimer < 150 / 2) reloadY = (150 / 2) - (reloadTimer - 150 / 2);
