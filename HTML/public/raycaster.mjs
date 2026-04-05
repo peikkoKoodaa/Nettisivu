@@ -582,10 +582,10 @@ function renderWeapon() {
     const drawX = screenW / 2 - w / 2 + bobX + idleSwayX + recoilX;
     const drawY = screenH - h + bobY + idleSwayY + recoilY + reloadY;
 
-    if (!aiming) {
-        ctx.drawImage(gunSprite, drawX, drawY, w, h);
-    } else if (aiming && reloadTimer <= 0) {
-        ctx.drawImage(aimSprite, drawX, drawY-70, w, h);
+    if (aiming && reloadTimer <= 0) {
+        ctx.drawImage(gunSprite, drawX, drawY-70, w, h);
+    } else {
+        ctx.drawImage(aimSprite, drawX, drawY, w, h);
     }    
 }
 
@@ -668,7 +668,7 @@ function removeDeadEnemies() {
     }
 }
 
-function renderWaveText() {
+function renderTexts() {
     ctx.font = "bold 36px Arial";
     ctx.fillStyle = "white";
     ctx.strokeStyle = "black";
@@ -676,13 +676,16 @@ function renderWaveText() {
 
     const waveText = `Wave ${wave}`;
     const enemyText = `Enemies: ${getAliveEnemyCount()}/${enemiesCount}`;
-
+    const bulletText = `Bullets: ${bullets}/${maxBullets}`;
+    
     ctx.strokeText(waveText, 20, 50);
     ctx.fillText(waveText, 20, 50);
 
     ctx.font = "bold 28px Arial";
     ctx.strokeText(enemyText, 20, 90);
     ctx.fillText(enemyText, 20, 90);
+    ctx.strokeText(bulletText, 20, 130);
+    ctx.fillText(bulletText, 20, 130);
 }
 
 function renderHealth() {
@@ -798,7 +801,7 @@ function gameLoop() {
     if (!aiming) {    
         renderCrosshair();
     }        
-    renderWaveText();
+    renderTexts();
     renderWavePopup();
     renderHealth();
 
