@@ -553,7 +553,7 @@ function renderWeapon() {
     let w;
     let h;
     
-    if (!aiming) {
+    if (!aiming || reloadTimer > 0) {
         const scale = 15;
         w = gunImage.width * scale;
         h = gunImage.height * scale;
