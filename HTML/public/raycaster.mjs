@@ -310,12 +310,7 @@ function shoot() {
         if (bestEnemy.health <= 0) {
             bestEnemy.alive = false;
         }
-    }
-
-    if (bullets <= 0) {
-        reloadTimer = reloadDuration;
-        bullets = maxBullets;
-    }    
+    }  
 }
 
 function update() {
