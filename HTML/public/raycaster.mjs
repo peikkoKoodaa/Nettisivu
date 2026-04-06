@@ -79,7 +79,10 @@ let enemiesCount = 2;
 let wave = 0;
 let waveTextTimer = 0;
 let explosionTimer = 0;
+let isReloading = false;
 let reloadTimer = 0;
+const reloadDuration = 150;
+const reloadMaxOffset = 180;
 
 gunImage.onload = () => {
     gunSprite = makeWhiteTransparent(gunImage);
@@ -260,6 +263,14 @@ function openDoorInFront() {
 
 let spacePressedLastFrame = false;
 
+function startReload() {
+    if (isReloading) return;
+    if (bullets === maxBullets) return;
+
+    isReloading = true;
+    reloadTimer = reloadDuration;
+}
+
 function shoot() {
     if (reloadTimer > 0) return;
     
@@ -302,7 +313,7 @@ function shoot() {
     }
 
     if (bullets <= 0) {
-        reloadTimer = 150;
+        reloadTimer = reloadDuration;
         bullets = maxBullets;
     }    
 }
@@ -341,9 +352,12 @@ function update() {
         nextY += Math.sin(playerAngle + Math.PI / 2) * moveSpeed;
         isMoving = true;
     }
-    if (keys["r"] && reloadTimer <= 0) {
-        reloadTimer = 150;
-        bullets = maxBullets;
+    if (keys["r"]) {
+        startReload();
+    }    
+
+    if (bullets <= 0) {
+        startReload();
     }    
 
     if (!isBlocked(Math.floor(nextX), Math.floor(playerY))) {
@@ -366,7 +380,7 @@ function update() {
         weaponBobAmount = Math.max(weaponBobAmount - 0.08, 0);
     }
 
-    if (mouseDown && !shootPressedLastFrame) {
+    if (mouseDown && !shootPressedLastFrame && !isReloading && bullets > 0) {
         shoot();
     }
 
@@ -392,6 +406,16 @@ function update() {
     if (reloadTimer > 0) {
         reloadTimer--;
     }    
+
+    if (isReloading) {
+        reloadTimer--;
+    
+        if (reloadTimer <= 0) {
+            reloadTimer = 0;
+            isReloading = false;
+            bullets = maxBullets;
+        }
+    }
 }
 
 function castRay(startX, startY, angle) {
@@ -573,10 +597,16 @@ function renderWeapon() {
     const recoilY = recoil;
 
     let reloadY = 0;
-
+    
     if (reloadTimer > 0) {
-        if (reloadTimer > 150 / 2) reloadY = (150 / 2) - (reloadTimer - 150 / 2);
-        if (reloadTimer < 150 / 2) reloadY = (150 / 2) - (reloadTimer - 150 / 2);
+        const elapsed = reloadDuration - reloadTimer;
+        const half = reloadDuration / 2;
+    
+        if (elapsed < half) {
+            reloadY = (elapsed / half) * reloadMaxOffset;
+        } else {
+            reloadY = ((reloadDuration - elapsed) / half) * reloadMaxOffset;
+        }
     }
         
     const drawX = screenW / 2 - w / 2 + bobX + idleSwayX + recoilX;
