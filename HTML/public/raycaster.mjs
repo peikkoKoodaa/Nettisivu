@@ -47,11 +47,11 @@ aimImage.src = "aim.png";
 const explosionImage = new Image();
 explosionImage.src = "explosion.png";
 const enemyImage = new Image();
-enemyImage.src = "enemy.png";
+enemyImage.src = "mörkö.png";
 const enemy2Image = new Image();
-enemy2Image.src = "enemy_2.png";
+enemy2Image.src = "mörkö_2.png";
 const enemy3Image = new Image();
-enemy3Image.src = "enemy_3.png";
+enemy3Image.src = "mörkö_3.png";
 
 let gunSprite = null;
 let aimSprite = null;
