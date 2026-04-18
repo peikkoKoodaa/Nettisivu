@@ -68,25 +68,39 @@
     const form = document.getElementById('Kommentit');
     const kentta = document.getElementById('kommenttiInput');
     const lista = document.getElementById('Kommenttilista');
-
-    function haeKommentit() {
-        fetch('/api/kommentit')
-            .then(res => res.json())
-            .then(data => {
-                lista.innerHTML = '';
-                data.forEach(k => {
-                    const li = document.createElement('li');
-                    li.textContent = k.teksti;
-                    lista.appendChild(li);
-                });
+    
+    async function haeKommentit() {
+        try {
+            const res = await fetch('/api/kommentit');
+            const data = await res.json();
+    
+            if (!res.ok) {
+                throw new Error(data.error || `HTTP ${res.status}`);
+            }
+    
+            if (!Array.isArray(data)) {
+                throw new Error('API ei palauttanut taulukkoa.');
+            }
+    
+            lista.innerHTML = '';
+    
+            data.forEach(k => {
+                const li = document.createElement('li');
+                li.textContent = k.teksti;
+                lista.appendChild(li);
             });
+        } catch (err) {
+            console.error('Kommenttien haku epäonnistui:', err);
+        }
     }
-
+    
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
-        const teksti = kentta.value;
+        const teksti = kentta.value.trim();
     
-        if (teksti.trim() !== '') {
+        if (!teksti) return;
+    
+        try {
             const res = await fetch('/api/kommentit', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -96,12 +110,19 @@
             const data = await res.json();
             console.log("Vastaus serveriltä:", data);
     
+            if (!res.ok) {
+                throw new Error(data.error || `HTTP ${res.status}`);
+            }
+    
             kentta.value = '';
             haeKommentit();
+        } catch (err) {
+            console.error('Kommentin lähetys epäonnistui:', err);
         }
     });
-
+    
     haeKommentit();
+    setInterval(haeKommentit, 3000);
     </script>
     <script>
         const audio = document.getElementById("bgm");
