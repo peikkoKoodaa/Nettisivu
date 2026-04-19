@@ -7,16 +7,18 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 export default async function handler(req, res) {
   try {
     if (req.method === 'GET') {
+      const limit = req.query.limit || 50;
+    
       const { data, error } = await supabase
         .from('kommentit')
         .select('*')
-        .limit(req.limit)
+        .limit(limit)
         .order('id', { ascending: false });
-
+    
       if (error) {
         return res.status(500).json({ error: error.message });
       }
-
+    
       return res.status(200).json(data);
     }
 
