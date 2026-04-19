@@ -115,7 +115,7 @@
             const res = await fetch('/api/kommentit', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ teksti, limit: document.querySelector('#maara').value; })
+                body: JSON.stringify({ teksti, limit: document.querySelector('#maara').value })
             });
     
             const data = await res.json();
