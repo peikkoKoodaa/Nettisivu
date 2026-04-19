@@ -10,7 +10,7 @@ export default async function handler(req, res) {
       const { data, error } = await supabase
         .from('kommentit')
         .select('*')
-        .limit(res.limit)
+        .limit(req.limit)
         .order('id', { ascending: false });
 
       if (error) {
