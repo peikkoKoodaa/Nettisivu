@@ -82,7 +82,9 @@
     
     async function haeKommentit() {
         try {
-            const res = await fetch('/api/kommentit');
+            const maara = document.querySelector('#maara').value;
+            
+            const res = await fetch(`/api/kommentit?limit=${maara}`);
             const data = await res.json();
     
             if (!res.ok) {
