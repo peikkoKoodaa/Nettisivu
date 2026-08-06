@@ -63,31 +63,9 @@
 
     <div class="div">
         <h1>Tein uuden LLM:n. Tässä on Python esimerkki miten käyttää sitä.</h1>
-        <p>
-            from transformers import AutoModelForCausalLM, AutoTokenizer
-            
-            tokenizer = AutoTokenizer.from_pretrained("kayttajanimi/ToivoGPT-300M")
-            model = AutoModelForCausalLM.from_pretrained("kayttajanimi/ToivoGPT-300M")
-            
-            messages = [
-                {"role": "system", "content": "Olet ystävällinen ja avulias tekoäly. Nimesi on ToivoGPT."},
-                {"role": "user", "content": "Mikä on nimesi?"}
-            ]
-            
-            inputs = tokenizer.apply_chat_template(messages, add_generation_prompt=True, return_tensors="pt")
-            
-            outputs = model.generate(
-                inputs,
-                max_new_tokens=200,
-                temperature=0.8,
-                top_k=50,
-                top_p=0.95,
-                repetition_penalty=1.1,
-                do_sample=True
-            )
-            
-            print(tokenizer.decode(outputs[0][inputs.shape[1]:], skip_special_tokens=True))
-        </p>
+        <a href="toivogpt-code-example.html">
+            <button>Esimerkki</button>
+        </a>
     </div>
     
     <p>Lisää tulossa...</p>
