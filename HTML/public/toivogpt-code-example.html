@@ -5,24 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToivoGPT käyttö</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
-    <script>hljs.highlightAll();</script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 2rem 1rem;
+            font-family: Arial, sans-serif;
+            background: #111827;
+            color: #f3f4f6;
+        }
+
+        .code-wrapper {
+            max-width: 1000px;
+            margin: 1rem auto;
+        }
+
+        pre {
+            margin: 0;
+            border-radius: 12px;
+            overflow-x: auto;
+            padding: 1rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+        }
+
+        code {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.7rem 1.2rem;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-  <pre><code class="language-python">
+  <div class="code-wrapper">
+    <pre><code class="language-python">
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 tokenizer = AutoTokenizer.from_pretrained("peikkoAI/ToivoGPT-300M")
 model = AutoModelForCausalLM.from_pretrained("peikkoAI/ToivoGPT-300M")
-    
+
 messages = [
     {"role": "system", "content": "You are friendly, helpful and honest AI. Your name is ToivoGPT."},
     {"role": "user", "content": "What's your name?"}
 ]
-    
+
 inputs = tokenizer.apply_chat_template(messages, add_generation_prompt=True, return_tensors="pt")
-    
+
 outputs = model.generate(
     inputs,
     max_new_tokens=200,
@@ -32,12 +72,19 @@ outputs = model.generate(
     repetition_penalty=1.1,
     do_sample=True
 )
-    
-print(tokenizer.decode(outputs[0][inputs.shape[1]:], skip_special_tokens=True))
-  </code></pre>
 
-  <a href="index.html">
-    <button>Takaisin</button>
-  </a>
+print(tokenizer.decode(outputs[0][inputs.shape[1]:], skip_special_tokens=True))
+    </code></pre>
+  </div>
+
+  <a href="index.html" class="back-button">Takaisin</a>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.hljs) {
+        hljs.highlightAll();
+      }
+    });
+  </script>
 </body>
 </html>
